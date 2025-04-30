@@ -42,7 +42,7 @@ export default function SupportPage() {
                 </div>
                 <div>
                   <p className="text-sm text-zinc-500 dark:text-zinc-400">Email Support</p>
-                  <p className="text-zinc-800 dark:text-zinc-200">support@unheard.app</p>
+                  <p className="text-zinc-800 dark:text-zinc-200">xeeshannteeli@gmail.com</p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
@@ -59,7 +59,7 @@ export default function SupportPage() {
             </div>
             <div className="mt-6">
               <a
-                href="mailto:support@unheard.app"
+                href="mailto:support@unheardd.netlify.app"
                 className={buttonStyles({
                   color: "primary",
                   radius: "full",
@@ -133,7 +133,7 @@ export default function SupportPage() {
               </div>
               <div className="mt-2">
                 <a
-                  href="mailto:feedback@unheard.app?subject=Unheard%20Feedback"
+                  href="mailto:feedback@unheardd.netlify.app?subject=Unheard%20Feedback"
                   className={buttonStyles({
                     color: "secondary",
                     radius: "full",
@@ -168,7 +168,7 @@ export default function SupportPage() {
               </div>
               <div className="mt-4">
                 <a
-                  href="mailto:report@unheard.app?subject=Issue%20Report"
+                  href="mailto:xeeshannteeli@gmail.com?subject=Issue%20Report"
                   className={buttonStyles({
                     color: "warning",
                     radius: "full",

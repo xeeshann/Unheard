@@ -81,7 +81,7 @@ export default function DefaultLayout({
     "@type": type === "article" ? "Article" : "WebSite",
     "name": pageTitle,
     "description": pageDescription,
-    "url": typeof window !== 'undefined' ? window.location.href : "https://unheard.app",
+    "url": typeof window !== 'undefined' ? window.location.href : "https://unheardd.netlify.app",
     "image": pageImage,
     "author": {
       "@type": "Organization",
@@ -92,7 +92,7 @@ export default function DefaultLayout({
       "name": "Unheard App",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://unheard.app/unheard.svg"
+        "url": "https://unheardd.netlify.app/unheard.svg"
       }
     }
   };
@@ -107,12 +107,12 @@ export default function DefaultLayout({
         <meta property="og:description" content={pageDescription} />
         <meta property="og:image" content={pageImage} />
         <meta property="og:type" content={type} />
-        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : "https://unheard.app"} />
+        <meta property="og:url" content={typeof window !== 'undefined' ? window.location.href : "https://unheardd.netlify.app"} />
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:title" content={pageTitle} />
         <meta property="twitter:description" content={pageDescription} />
         <meta property="twitter:image" content={pageImage} />
-        <link rel="canonical" href={typeof window !== 'undefined' ? window.location.href : "https://unheard.app"} />
+        <link rel="canonical" href={typeof window !== 'undefined' ? window.location.href : "https://unheardd.netlify.app"} />
         <script type="application/ld+json">
           {JSON.stringify(structuredData)}
         </script>

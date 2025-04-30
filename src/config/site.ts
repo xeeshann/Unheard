@@ -3,8 +3,8 @@ export type SiteConfig = typeof siteConfig;
 export const siteConfig = {
   name: "Unheard",
   description: "Where average voices echo loudest.",
-  url: "https://unheard.app",
-  ogImage: "https://unheard.app/unheard-social-preview.jpg",
+  url: "https://unheardd.netlify.app",
+  ogImage: "https://unheardd.netlify.app/unheard-social-preview.jpg",
   metaTags: {
     keywords: "confessions, anonymous sharing, community, social platform, anonymous stories, personal experiences",
     author: "Unheard Team",
@@ -57,6 +57,6 @@ export const siteConfig = {
   links: {
     github: "https://github.com/frontio-ai/heroui",
     twitter: "https://twitter.com/unheard_app",
-    support: "mailto:support@unheard.app",
+    support: "mailto:support@unheardd.netlify.app",
   },
 };
