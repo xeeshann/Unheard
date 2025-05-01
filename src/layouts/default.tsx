@@ -197,6 +197,11 @@ export default function DefaultLayout({
                   Guidelines
                 </Link>
               </div>
+              <div className="flex float-right items-center justify-center gap-4 mb-6">
+                <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                  Made with ❤️ by <Link isExternal href="https://zeeshu.netlify.app/" className="text-violet-500 hover:text-violet-600 transition-colors">Zeeshan Teeli</Link>
+                </p>
+                </div>
             </div>
           </div>
         </div>

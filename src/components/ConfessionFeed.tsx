@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { Pagination } from "@nextui-org/pagination";
 import { Confession, Tag, ReactionType } from "@/types/confession";
 import { ConfessionCard, ReactionContext } from "./ConfessionCard";
@@ -29,6 +29,12 @@ export const ConfessionFeed = ({
   
   // State for tracking active reaction card
   const [activeCardId, setActiveCardId] = useState<string | null>(null);
+  
+  // Create a ref for the confessions section
+  const confessionsRef = useRef<HTMLDivElement>(null);
+  
+  // Flag to track if the page change was initiated by pagination navigation
+  const [isPaginationNavigated, setIsPaginationNavigated] = useState(false);
 
   // Check for mobile screen size
   useEffect(() => {
@@ -56,6 +62,18 @@ export const ConfessionFeed = ({
       if (resizeTimeout) window.clearTimeout(resizeTimeout);
     };
   }, []);
+
+  // Scroll to the confessions section when page changes due to pagination navigation
+  useEffect(() => {
+    if (isPaginationNavigated && confessionsRef.current) {
+      confessionsRef.current.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      // Reset the flag after scrolling
+      setIsPaginationNavigated(false);
+    }
+  }, [currentPage, isPaginationNavigated]);
 
   // Use memoization to prevent unnecessary filtering on each render
   const getFilteredConfessions = useCallback(() => {
@@ -146,7 +164,7 @@ export const ConfessionFeed = ({
     <ReactionContext.Provider value={{ activeCardId, setActiveCardId }}>
       {filteredConfessions.length > 0 ? (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div ref={confessionsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {currentConfessions.map(confession => (
               <ConfessionCard
                 key={confession.id}
@@ -165,7 +183,10 @@ export const ConfessionFeed = ({
               total={totalPages}
               initialPage={1}
               page={currentPage}
-              onChange={setCurrentPage}
+              onChange={(page) => {
+                setIsPaginationNavigated(true);
+                setCurrentPage(page);
+              }}
               color="secondary"
               className="pagination custom-pagination"
               size="lg"                  

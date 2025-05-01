@@ -197,6 +197,8 @@ const formatNumber = (num: number): string => {
 
 // Animated stat counter component with enhanced glassmorphism
 const StatCard = ({ value, label, delay }: { value: string; label: string; delay: number }) => {
+  const isLoading = value === "Loading...";
+  
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -205,7 +207,7 @@ const StatCard = ({ value, label, delay }: { value: string; label: string; delay
       className="text-center"
     >
       <motion.p 
-        className="text-4xl font-bold text-primary"
+        className={`font-bold text-primary ${isLoading ? 'text-lg' : 'text-4xl'}`}
         initial={{ scale: 0.9 }}
         animate={{ scale: 1 }}
         transition={{ delay: delay + 0.2, duration: 0.3, type: "spring" }}
