@@ -163,7 +163,8 @@ export default function IndexPage() {
         confessionData.username,
         confessionData.mood || undefined,
         !confessionData.username, // anonymous if no username is provided
-        confessionData.topic
+        confessionData.topic,
+        confessionData.avatar // Pass the avatar to the service
       );
       
       // Add initial reaction if provided

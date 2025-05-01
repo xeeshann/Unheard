@@ -12,9 +12,9 @@ interface ConfessionFormProps {
     tags: Tag[];
     mood: Mood | null;
     username: string;
-    avatar?: string;
+    avatar: string; // Changed from optional to required
     initialReaction?: ReactionType | null;
-    topic: string; // Changed from optional to required
+    topic: string;
   }) => void;
   featuredTopics: Topic[];
 }
@@ -25,6 +25,7 @@ export const ConfessionForm = ({ onSubmit, featuredTopics: _ }: ConfessionFormPr
   const [selectedMood, setSelectedMood] = useState<Mood | null>(null);
   const [username, setUsername] = useState("");
   const [selectedAvatar, setSelectedAvatar] = useState("");
+  const [avatarError, setAvatarError] = useState(""); // New state for avatar error
   const [initialReaction, setInitialReaction] = useState<ReactionType | null>(null);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -87,6 +88,11 @@ export const ConfessionForm = ({ onSubmit, featuredTopics: _ }: ConfessionFormPr
   ];
 
   const handleSubmit = () => {
+    // Reset all error states
+    setUsernameError("");
+    setTopicError("");
+    setAvatarError("");
+    
     // Validate username
     if (!username.trim()) {
       setUsernameError("Username is required");
@@ -99,18 +105,15 @@ export const ConfessionForm = ({ onSubmit, featuredTopics: _ }: ConfessionFormPr
       return false;
     }
     
+    // Validate avatar selection - ensure it's mandatory
+    if (!selectedAvatar) {
+      setAvatarError("Please select an avatar");
+      return false;
+    }
+    
     // Check confession length
     if (confession.trim().split(" ").length < 10) {
       return false; // Not enough words
-    }
-    
-    // Get avatar URL - either selected or from localStorage
-    let avatarUrl = selectedAvatar;
-    if (!avatarUrl) {
-      const savedAvatar = localStorage.getItem("confessionAvatar");
-      if (savedAvatar) {
-        avatarUrl = savedAvatar;
-      }
     }
     
     onSubmit({
@@ -118,16 +121,14 @@ export const ConfessionForm = ({ onSubmit, featuredTopics: _ }: ConfessionFormPr
       tags: selectedTags,
       mood: selectedMood,
       username,
-      avatar: avatarUrl,
+      avatar: selectedAvatar, // Always provide the selected avatar
       initialReaction,
-      topic: selectedTopic, // Now required
+      topic: selectedTopic,
     });
     
-    // Save username to localStorage
+    // Save username and avatar to localStorage
     localStorage.setItem("confessionUsername", username);
-    if (selectedAvatar) {
-      localStorage.setItem("confessionAvatar", selectedAvatar);
-    }
+    localStorage.setItem("confessionAvatar", selectedAvatar);
     
     // Reset form
     setConfession("");
@@ -139,6 +140,7 @@ export const ConfessionForm = ({ onSubmit, featuredTopics: _ }: ConfessionFormPr
     setUsernameError("");
     setSelectedTopic("");
     setTopicError("");
+    setAvatarError("");
     
     return true;
   };
@@ -296,17 +298,19 @@ export const ConfessionForm = ({ onSubmit, featuredTopics: _ }: ConfessionFormPr
         )}
       </div>
       
-      {/* Avatar selection */}
+      {/* Avatar selection - now required */}
       <div className="mb-4">
-        <p className="text-sm font-medium text-zinc-600 dark:text-zinc-300 mb-2">Choose an avatar:</p>
-        <div className="flex flex-wrap gap-3">
+        <p className="text-sm font-medium text-zinc-600 dark:text-zinc-300 mb-2">
+          Choose an avatar <span className="text-red-500">*</span>
+        </p>
+        <div className={`flex flex-wrap gap-3 ${avatarError ? 'p-2 border rounded-lg border-red-500' : ''}`}>
           {avatarOptions.map((avatar) => (
             <Tooltip key={avatar.id} content={avatar.label}>
               <button
                 onClick={() => {
-                  const newAvatar = selectedAvatar === avatar.src ? "" : avatar.src;
-                  setSelectedAvatar(newAvatar);
-                  localStorage.setItem("confessionAvatar", newAvatar);
+                  setSelectedAvatar(avatar.src);
+                  setAvatarError(""); // Clear error when avatar is selected
+                  localStorage.setItem("confessionAvatar", avatar.src);
                 }}
                 className={`p-1 rounded-full transition-all ${
                   selectedAvatar === avatar.src 
@@ -319,6 +323,9 @@ export const ConfessionForm = ({ onSubmit, featuredTopics: _ }: ConfessionFormPr
             </Tooltip>
           ))}
         </div>
+        {avatarError && (
+          <p className="mt-1 text-xs text-red-500">{avatarError}</p>
+        )}
       </div>
       
       <div className="flex flex-wrap gap-2 mb-4">
