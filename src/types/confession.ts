@@ -54,6 +54,29 @@ export interface Topic {
   count: number;
 }
 
+// Default avatar - used when avatar is invalid or not available
+export const DEFAULT_AVATAR = "https://api.dicebear.com/7.x/avataaars/svg?seed=default";
+
+// List of valid avatar styles used in the app
+export const VALID_AVATAR_STYLES = [
+  "avataaars", "pixel-art", "identicon", "bottts", "micah"
+];
+
+// Function to validate avatar URLs
+export function validateAvatar(avatarUrl?: string): string {
+  if (!avatarUrl) return DEFAULT_AVATAR;
+  
+  // Check if it's from DiceBear
+  if (avatarUrl.startsWith("https://api.dicebear.com/7.x/")) {
+    // Make sure it's using one of our approved styles
+    const isValidStyle = VALID_AVATAR_STYLES.some(style => avatarUrl.includes(`/${style}/`));
+    return isValidStyle ? avatarUrl : DEFAULT_AVATAR;
+  }
+  
+  // If not a DiceBear URL, use default
+  return DEFAULT_AVATAR;
+}
+
 // Helper functions
 export const formatTimeAgo = (date: Date) => {
   const now = new Date();

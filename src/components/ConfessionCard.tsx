@@ -4,7 +4,7 @@ import { Tooltip } from "@nextui-org/tooltip";
 import { Avatar } from "@nextui-org/avatar";
 import { Popover, PopoverTrigger, PopoverContent } from "@nextui-org/popover";
 import { CommentForm } from "./CommentForm";
-import { Confession, Tag, ReactionType, MoodIcons, formatTimeAgo } from "@/types/confession";
+import { Confession, Tag, ReactionType, MoodIcons, formatTimeAgo, validateAvatar } from "@/types/confession";
 
 // Create a context to manage which card has an open reaction panel
 interface ReactionContextType {
@@ -215,7 +215,7 @@ export const ConfessionCard = memo(({
             <div className="flex items-center gap-1.5">
               <Avatar 
                 size="sm" 
-                src={confession.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${confession.id}`}
+                src={validateAvatar(confession.avatar)}
                 alt={confession.username || "User avatar"}
                 classNames={{
                   base: "border border-zinc-200 dark:border-zinc-700",
@@ -363,7 +363,7 @@ export const ConfessionCard = memo(({
                       <div className="flex items-center gap-2 mb-2">
                         <Avatar 
                           size="sm" 
-                          src={comment.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${comment.id}`}
+                          src={validateAvatar(comment.avatar)}
                           alt={comment.username || "Comment author"}
                           classNames={{
                             base: "border border-zinc-200 dark:border-zinc-700",

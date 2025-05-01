@@ -64,6 +64,7 @@ export const ConfessionForm = ({ onSubmit, featuredTopics: _ }: ConfessionFormPr
 
   // Predefined avatar options
   const avatarOptions = [
+    // Original avatars
     { id: "avatar1", src: "https://api.dicebear.com/7.x/avataaars/svg?seed=avatar1", label: "Avatar 1" },
     { id: "avatar2", src: "https://api.dicebear.com/7.x/avataaars/svg?seed=avatar2", label: "Avatar 2" },
     { id: "avatar3", src: "https://api.dicebear.com/7.x/avataaars/svg?seed=avatar3", label: "Avatar 3" },
@@ -73,6 +74,16 @@ export const ConfessionForm = ({ onSubmit, featuredTopics: _ }: ConfessionFormPr
     { id: "avatar7", src: "https://api.dicebear.com/7.x/avataaars/svg?seed=avatar7", label: "Avatar 7" },
     { id: "avatar8", src: "https://api.dicebear.com/7.x/avataaars/svg?seed=avatar8", label: "Avatar 8" },
     { id: "avatar9", src: "https://api.dicebear.com/7.x/avataaars/svg?seed=avatar9", label: "Avatar 9" },
+    // Additional varieties using different styles
+    { id: "avatarPixel1", src: "https://api.dicebear.com/7.x/pixel-art/svg?seed=pixelAvatar1", label: "Pixel Avatar 1" },
+    { id: "avatarPixel2", src: "https://api.dicebear.com/7.x/pixel-art/svg?seed=pixelAvatar2", label: "Pixel Avatar 2" },
+    { id: "avatarPixel3", src: "https://api.dicebear.com/7.x/pixel-art/svg?seed=pixelAvatar3", label: "Pixel Avatar 3" },
+    { id: "avatarIdent1", src: "https://api.dicebear.com/7.x/identicon/svg?seed=identAvatar1", label: "Abstract Avatar 1" },
+    { id: "avatarIdent2", src: "https://api.dicebear.com/7.x/identicon/svg?seed=identAvatar2", label: "Abstract Avatar 2" },
+    { id: "avatarBottts1", src: "https://api.dicebear.com/7.x/bottts/svg?seed=bottAvatar1", label: "Robot Avatar 1" },
+    { id: "avatarBottts2", src: "https://api.dicebear.com/7.x/bottts/svg?seed=bottAvatar2", label: "Robot Avatar 2" },
+    { id: "avatarMicah1", src: "https://api.dicebear.com/7.x/micah/svg?seed=micahAvatar1", label: "Simple Avatar 1" },
+    { id: "avatarMicah2", src: "https://api.dicebear.com/7.x/micah/svg?seed=micahAvatar2", label: "Simple Avatar 2" },
   ];
 
   const handleSubmit = () => {
