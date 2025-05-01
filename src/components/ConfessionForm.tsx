@@ -48,6 +48,20 @@ export const ConfessionForm = ({ onSubmit, featuredTopics: _ }: ConfessionFormPr
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
+  // Load saved username and avatar from localStorage on component mount
+  useEffect(() => {
+    const savedUsername = localStorage.getItem("confessionUsername");
+    const savedAvatar = localStorage.getItem("confessionAvatar");
+    
+    if (savedUsername) {
+      setUsername(savedUsername);
+    }
+    
+    if (savedAvatar) {
+      setSelectedAvatar(savedAvatar);
+    }
+  }, []);
+
   // Predefined avatar options
   const avatarOptions = [
     { id: "avatar1", src: "https://api.dicebear.com/7.x/avataaars/svg?seed=avatar1", label: "Avatar 1" },
@@ -79,15 +93,30 @@ export const ConfessionForm = ({ onSubmit, featuredTopics: _ }: ConfessionFormPr
       return false; // Not enough words
     }
     
+    // Get avatar URL - either selected or from localStorage
+    let avatarUrl = selectedAvatar;
+    if (!avatarUrl) {
+      const savedAvatar = localStorage.getItem("confessionAvatar");
+      if (savedAvatar) {
+        avatarUrl = savedAvatar;
+      }
+    }
+    
     onSubmit({
       text: confession,
       tags: selectedTags,
       mood: selectedMood,
       username,
-      avatar: selectedAvatar,
+      avatar: avatarUrl,
       initialReaction,
       topic: selectedTopic, // Now required
     });
+    
+    // Save username to localStorage
+    localStorage.setItem("confessionUsername", username);
+    if (selectedAvatar) {
+      localStorage.setItem("confessionAvatar", selectedAvatar);
+    }
     
     // Reset form
     setConfession("");
@@ -263,7 +292,11 @@ export const ConfessionForm = ({ onSubmit, featuredTopics: _ }: ConfessionFormPr
           {avatarOptions.map((avatar) => (
             <Tooltip key={avatar.id} content={avatar.label}>
               <button
-                onClick={() => setSelectedAvatar(selectedAvatar === avatar.src ? "" : avatar.src)}
+                onClick={() => {
+                  const newAvatar = selectedAvatar === avatar.src ? "" : avatar.src;
+                  setSelectedAvatar(newAvatar);
+                  localStorage.setItem("confessionAvatar", newAvatar);
+                }}
                 className={`p-1 rounded-full transition-all ${
                   selectedAvatar === avatar.src 
                     ? 'ring-2 ring-primary transform scale-110' 

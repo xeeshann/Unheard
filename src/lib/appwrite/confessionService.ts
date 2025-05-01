@@ -40,7 +40,7 @@ export class ConfessionService {
         anonymous,
         topic,
         deviceId, // Store device ID to allow editing/deletion by original creator
-        // Ensure the avatar is saved properly and never becomes undefined
+        // Always use the provided avatar if it exists, fallback to generating one
         avatar: avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${deviceId}`
       };
 

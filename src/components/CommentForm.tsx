@@ -44,6 +44,15 @@ export const CommentForm = ({ onAddComment }: CommentFormProps) => {
     
     const username = commentUsername || "Anonymous";
     
+    // Get avatar URL - either selected or from localStorage
+    let avatarUrl = selectedAvatar;
+    if (!avatarUrl) {
+      const savedAvatar = localStorage.getItem("commentAvatar");
+      if (savedAvatar) {
+        avatarUrl = savedAvatar;
+      }
+    }
+    
     // Save username and avatar to localStorage for future use
     localStorage.setItem("commentUsername", username);
     if (selectedAvatar) {
@@ -52,7 +61,7 @@ export const CommentForm = ({ onAddComment }: CommentFormProps) => {
     
     // Call onAddComment with the avatar
     try {
-      onAddComment(commentText, username, selectedAvatar);
+      onAddComment(commentText, username, avatarUrl);
       // Clear comment text after successful submission
       setCommentText("");
     } catch (error) {

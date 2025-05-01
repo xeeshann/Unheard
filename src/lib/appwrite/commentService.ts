@@ -35,6 +35,7 @@ export class CommentService {
           username: username || 'Anonymous User-' + deviceId.substring(0, 6),
           timestamp: new Date().toISOString(),
           deviceId, // Store device ID to allow editing/deletion by original creator
+          // Use provided avatar if available, otherwise generate one
           avatar: avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${deviceId}`
         },
         // Use proper permissions that Appwrite accepts
