@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://unheardd.netlify.app/</loc>
-    <lastmod>2025-04-30</lastmod>
+    <loc>https://unheard.me/</loc>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://unheardd.netlify.app/about</loc>
-    <lastmod>2025-04-30</lastmod>
+    <loc>https://unheard.me/about</loc>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://unheardd.netlify.app/support</loc>
-    <lastmod>2025-04-30</lastmod>
+    <loc>https://unheard.me/support</loc>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://unheardd.netlify.app/guidelines</loc>
-    <lastmod>2025-04-30</lastmod>
+    <loc>https://unheard.me/guidelines</loc>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://unheardd.netlify.app/blog</loc>
-    <lastmod>2025-04-30</lastmod>
+    <loc>https://unheard.me/blog</loc>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://unheardd.netlify.app/docs</loc>
-    <lastmod>2025-04-30</lastmod>
+    <loc>https://unheard.me/docs</loc>
+    <lastmod>2025-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

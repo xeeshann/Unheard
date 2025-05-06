@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Allow all crawlers
-Sitemap: https://unheardd.netlify.app/sitemap.xml
+Sitemap: https://unheard.me/sitemap.xml
 
 # Disallow sensitive areas
 Disallow: /admin/
