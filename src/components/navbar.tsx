@@ -16,8 +16,6 @@ import { motion } from "framer-motion";
 import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import {
-  TwitterIcon,
-  GithubIcon,
   DiscordIcon,
 } from "@/components/icons";
 // Remove Logo import and import unheard.svg directly
@@ -232,15 +230,11 @@ export const Navbar = () => {
 
           {/* Mobile Social & Theme */}
           <motion.div variants={itemVariants} className="flex items-center gap-4 mt-4 px-2">
-            <Link isExternal href={siteConfig.links.twitter} title="Twitter" className="hover:scale-110 transition-transform">
-              <TwitterIcon className="text-default-500 hover:text-blue-500 h-5 w-5" />
-            </Link>
+            
             <Link isExternal href={siteConfig.links.support} title="Support" className="hover:scale-110 transition-transform">
               <DiscordIcon className="text-default-500 hover:text-indigo-500 h-5 w-5" />
             </Link>
-            <Link isExternal href={siteConfig.links.github} title="GitHub" className="hover:scale-110 transition-transform">
-              <GithubIcon className="text-default-500 hover:text-zinc-800 dark:hover:text-zinc-200 h-5 w-5" />
-            </Link>
+            
             <ThemeSwitch />
           </motion.div>
 
